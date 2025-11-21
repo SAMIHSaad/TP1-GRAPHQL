@@ -17,7 +17,7 @@ public class Centre {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nomCentre;
+    private String nom;
     private String adresse;
     @OneToMany(mappedBy = "centre")
     private List<Etudiant> etudiants;

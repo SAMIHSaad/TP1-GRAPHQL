@@ -1,39 +1,44 @@
 type Query{
-    findAllEtudiants : [Etudiant]
-    getEtudiantById(id: ID) : Etudiant
-    listCentres : [Centre]
-    getCentreById(id: ID) : Centre
+    getAllEtudiants : [Etudiant]
+    getEtudiantById(id: ID): Etudiant
+    getAllCentres: [Centre]
+    getCentreById(id: ID): Centre
 }
 
 type Mutation{
-    addEtudiant(etudiant: EtudiantDTO) : Etudiant
-    updateEtudiant(id: ID, etudiant: EtudiantDTO) : Etudiant
-    deleteEtudiant(id: ID) : String
+    addEtudiant (etudiant : EtudiantDTO): Etudiant
+    updateEtudiant (id: ID, etudiant : EtudiantDTO): Etudiant
+    deleteEtudiant(id: ID): String
+}
+
+type Subscription{
+    etudiantAdded: Etudiant
+    etudiantRemoved: String
+}
+
+enum Genre {
+    Homme,
+    Femme
 }
 
 type Etudiant {
     id: ID
     nom: String
-    prenom: String
+    prenom:String
     genre: Genre
-    centre: Centre
-}
-
-enum Genre {
-    HOMME
-    FEMME
+    centre:Centre
 }
 
 type Centre{
     id: ID
-    nomCentre: String
+    nom: String
     adresse: String
-    etudiants: [Etudiant]
+    listEtudiants: [Etudiant]
 }
 
 input EtudiantDTO{
     nom: String
-    prenom: String
-    genre: String
-    centreId: ID
+    prenom:String
+    genre: Genre
+    centreId: Float
 }
